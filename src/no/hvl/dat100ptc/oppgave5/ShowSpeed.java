@@ -3,11 +3,7 @@ package no.hvl.dat100ptc.oppgave5;
 import javax.swing.JOptionPane;
 
 import easygraphics.EasyGraphics;
-import no.hvl.dat100ptc.TODO;
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
-import no.hvl.dat100ptc.oppgave2.GPSData;
-import no.hvl.dat100ptc.oppgave2.GPSDataFileReader;
-import no.hvl.dat100ptc.oppgave3.GPSUtils;
 import no.hvl.dat100ptc.oppgave4.GPSComputer;
 
 public class ShowSpeed extends EasyGraphics {
@@ -32,13 +28,17 @@ public class ShowSpeed extends EasyGraphics {
 		launch(args);
 	}
 
-	public void run() {
+	@Override
+    public void run() {
 
 		int N = gpspoints.length-1; // number of data points
 		
-		makeWindow("Speed profile", 2*MARGIN + 2 * N, 2 * MARGIN + BARHEIGHT);
+        makeWindow("Speed profile", 2 * MARGIN + 2 * N, 2 * MARGIN + BARHEIGHT);
 		
+        setSpeed(1);
+
 		showSpeedProfile(MARGIN + BARHEIGHT,N);
+
 	}
 	
 	public void showSpeedProfile(int ybase, int N) {
@@ -48,7 +48,24 @@ public class ShowSpeed extends EasyGraphics {
 				
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+        int speed;
+        int averageSpeed = (int) gpscomputer.averageSpeed();
+        int barWidth = 2;
+        int barPadding = 0;
+        int graphWidth = (N * timescaling * barWidth) - barWidth;
+
+        for (int i = 0; i < gpscomputer.speeds().length; i++) {
+            speed = (int) gpscomputer.speeds()[i];
+            if (speed > 0 && speed < BARHEIGHT) {
+                barPadding = i * timescaling * barWidth;
+                setColor(0, 0, 255);
+                fillRectangle(barPadding, (ybase - speed), barWidth, speed);
+            }
+        }
+
+        // Draw average speed indicator
+        setColor(0, 255, 0);
+        fillRectangle(0, (ybase - averageSpeed), graphWidth, 3);
 	
 		// TODO - SLUTT
 	}
