@@ -105,12 +105,9 @@ public class GPSComputer {
 		double maxspeed = 0;
 		
 		// TODO - START
-		
+
         for (int i = 0; i < gpspoints.length; i++) {
-            if (i + 1 < gpspoints.length) {
-                double speed = GPSUtils.speed(gpspoints[i], gpspoints[i + 1]);
-                maxspeed = speed > maxspeed ? speed : maxspeed;
-            }
+            maxspeed = GPSUtils.findMax(this.speeds());
         }
 
         return maxspeed;
@@ -191,7 +188,8 @@ public class GPSComputer {
 		// TODO - START
 		
         int totalTime = this.totalTime();
-        double averageSpeed = this.averageSpeed();
+        // We must remember to convert average speed back to m/s, to use kcal()
+        double averageSpeed = this.averageSpeed() / 3.6;
 
         totalkcal = this.kcal(weight, totalTime, averageSpeed);
 
@@ -212,7 +210,7 @@ public class GPSComputer {
         String totalElevation = GPSUtils.formatDouble(this.totalElevation());
         String averageSpeed = GPSUtils.formatDouble(this.averageSpeed());
         String maxSpeed = GPSUtils.formatDouble(this.maxSpeed());
-        String energy = GPSUtils.formatDouble(this.totalKcal(GPSComputer.WEIGHT));
+        String energy = GPSUtils.formatDouble(this.totalKcal(WEIGHT));
 
         System.out.println("Total time     :   " + GPSUtils.formatTime(this.totalTime()));
         System.out.println("Total distance :   " + totalDistance + " km");
