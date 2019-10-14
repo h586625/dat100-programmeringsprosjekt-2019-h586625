@@ -59,13 +59,13 @@ public class ShowSpeed extends EasyGraphics {
             if (speed > 0 && speed < BARHEIGHT) {
                 barPadding = i * timescaling * barWidth;
                 setColor(0, 0, 255);
-                fillRectangle(barPadding, (ybase - speed), barWidth, speed);
+                fillRectangle(MARGIN + barPadding, (ybase - speed), barWidth, speed);
             }
         }
 
         // Draw average speed indicator
         setColor(0, 255, 0);
-        fillRectangle(0, (ybase - averageSpeed), graphWidth, 3);
+        fillRectangle(MARGIN, (ybase - averageSpeed), graphWidth, 3);
 	
 		// TODO - SLUTT
 	}

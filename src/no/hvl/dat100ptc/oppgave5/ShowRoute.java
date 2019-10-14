@@ -3,7 +3,6 @@ package no.hvl.dat100ptc.oppgave5;
 import javax.swing.JOptionPane;
 
 import easygraphics.EasyGraphics;
-import no.hvl.dat100ptc.TODO;
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
 import no.hvl.dat100ptc.oppgave3.GPSUtils;
 import no.hvl.dat100ptc.oppgave4.GPSComputer;
@@ -30,7 +29,8 @@ public class ShowRoute extends EasyGraphics {
 		launch(args);
 	}
 
-	public void run() {
+	@Override
+    public void run() {
 
 		makeWindow("Route", MAPXSIZE + 2 * MARGIN, MAPYSIZE + 2 * MARGIN);
 
@@ -58,8 +58,13 @@ public class ShowRoute extends EasyGraphics {
 		double ystep;
 		
 		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
+		|
+		double maxlat = GPSUtils.findMax(GPSUtils.getLatitudes(gpspoints));
+        double minlat = GPSUtils.findMin(GPSUtils.getLatitudes(gpspoints));
+
+        ystep = MAPXSIZE / (Math.abs(maxlat - minlat)); 
+
+        return ystep;
 
 		// TODO - SLUTT
 		
@@ -69,8 +74,8 @@ public class ShowRoute extends EasyGraphics {
 
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
 		
+
 		// TODO - SLUTT
 	}
 
@@ -80,11 +85,12 @@ public class ShowRoute extends EasyGraphics {
 
 		setColor(0,0,0);
 		setFont("Courier",12);
+        getText("hei \n hei \n hei");
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
-		
+        gpscomputer.displayStatistics();
+
 		// TODO - SLUTT;
 	}
 
@@ -92,8 +98,8 @@ public class ShowRoute extends EasyGraphics {
 
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
 		
+
 		// TODO - SLUTT
 	}
 

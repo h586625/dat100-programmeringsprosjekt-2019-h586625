@@ -49,7 +49,6 @@ public class ShowProfile extends EasyGraphics {
         int elevation;
         int N = gpspoints.length;
         int ratio = N / 60; // To ensure the graph never gets longer than the window's width
-        System.out.println("N: " + N);
 
         for (int i = 0; i < gpspoints.length; i++) {
             elevation = (int) gpspoints[i].getElevation();
